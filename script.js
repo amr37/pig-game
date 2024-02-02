@@ -9,15 +9,14 @@ const score1El = document.querySelector('#score--1')
 const current0El = document.querySelector('#current--0')
 const current1El = document.querySelector('#current--1')
 
+// const btnHold = document.getElementsByClassName('btn--hold')[0]
 
-
-// TODO:3
-// llamar a función init que haga lo siguiente:
-// el dado por defecto es invisible
-// score1 y score2 a 0
-// currentScore1 y currentScore2 a 0
+let currentScore, scores, activePlayer
 
 const init = function () {
+  currentScore = 0
+  activePlayer = 0
+  scores = [0, 0]
   // diceEl.classList.add('hidden')
   diceEl.style.display = 'none'
   score0El.textContent = 0
@@ -27,8 +26,6 @@ const init = function () {
 }
 
 init()
-
-// const btnHold = document.getElementsByClassName('btn--hold')[0]
 
 console.log(btnNew, btnRoll, btnHold)
 
@@ -41,9 +38,18 @@ btnRoll.addEventListener('click', () => {
   diceEl.src = `dice-${dice}.png`
 
   if (dice === 1) {
-    // pierdes turno
+    // TODO: cambiar de jugador
+    // variable activePlayer
+    // color css
+    // currentScore a 0
+    switchtPlayer()
   } else {
     // sumar el dado al current score
+    currentScore += dice
+    // TODO: seleccionar de forma dinámica el textContent
+    document.querySelector(`#current--${activePlayer}`).textContent =
+      currentScore
+    // current0El.textContent = currentScore
   }
 })
 
@@ -54,8 +60,3 @@ btnNew.addEventListener('click', () => {
 btnHold.addEventListener('click', () => {
   console.log('Pasar turno')
 })
-
-
-// TODO:
-// cuando se hace click en el botón roll:
-// el dado se pone visible
